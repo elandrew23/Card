@@ -13,6 +13,7 @@ package card;
  * @date 20-09-24
  */
 import java.util.Random;
+import java.util.Scanner;
 
 public class CardTrick {
 
