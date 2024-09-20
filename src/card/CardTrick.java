@@ -33,37 +33,17 @@ public class CardTrick {
             System.out.println(c.getSuit() + " " + c.getValue());
         }
         
-        //Code for step #4 below, with added integrity checks to ensure valid inputs
-        Card checkedCard = new Card();
-        Scanner k = new Scanner(System.in);
-        
-        boolean validAnswer = false;
-        do {
-            System.out.print("Enter a card value (1-13): ");
-            int userVal = k.nextInt();
-            validAnswer = valueRangeComparison(userVal, 1, 13, validAnswer);
-            if (validAnswer) {
-                checkedCard.setValue(userVal);
-            }
-        } while (!validAnswer);
-        
-        validAnswer = false;
-        do {
-            System.out.print("Enter a suit (0-3 where 0=Hearts, 1=Diamonds, 2=Spades, 3=Clubs): ");
-            int userVal = k.nextInt();
-            validAnswer = valueRangeComparison(userVal, 0, 3, validAnswer);
-            if (validAnswer) {
-                checkedCard.setSuit(Card.SUITS[userVal]);
-            }
-        } while (!validAnswer);
-        k.close();
+        //Code for step #6 below; initialise luckyCard as 3 of Spades
+        Card luckyCard = new Card();
+        luckyCard.setValue(3);
+        luckyCard.setSuit(Card.SUITS[2]);
         
         //Search magicHand here
         int isFound = 0;
         for (int i=0; i<magicHand.length; i++) 
         {
             Card c = magicHand[i];
-            if (c.getValue() == checkedCard.getValue() && c.getSuit().equals(checkedCard.getSuit())) 
+            if (c.getValue() == luckyCard.getValue() && c.getSuit().equals(luckyCard.getSuit())) 
                 isFound = 1;
         }
         
@@ -73,16 +53,4 @@ public class CardTrick {
         else
             System.out.println("Congratulations, your card is in the magic hand!");
     }
-    
-    //This method minimises repetition between the do...while statements; just want to demonstrate knowledge
-    public static boolean valueRangeComparison(int userVal, int min, int max, boolean validAnswer)
-    {
-        if (userVal >= min && userVal <= max) {              
-            validAnswer = true;
-        }
-        else
-            System.out.println("Invalid value entered, try again.");
-        return validAnswer;
-    }
-        // add one luckcard hard code 2,clubs
 }
